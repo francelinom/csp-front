@@ -15,16 +15,16 @@ export class ClientesService {
     return this.httpClient.post<Cliente>(`${URL}/api/clientes`, cliente);
   }
 
-  // getClientes(): Observable<Cliente[]> {
-  //   return [];
-  // }
-
-  getClientesMocado(): Cliente[] {
-    let cliente = new Cliente();
-
-    cliente.id = 1;
-    (cliente.nome = 'Fran'), (cliente.dataCadastro = '03/04/2022');
-    cliente.cpf = '12345678911';
-    return [cliente];
+  getClientes(): Observable<Cliente[]> {
+    return this.httpClient.get<Cliente[]>(`${URL}/api/clientes`);
   }
+
+  // getClientesMocado(): Cliente[] {
+  //   let cliente = new Cliente();
+
+  //   cliente.id = 1;
+  //   (cliente.nome = 'Fran'), (cliente.dataCadastro = '03/04/2022');
+  //   cliente.cpf = '12345678911';
+  //   return [cliente];
+  // }
 }

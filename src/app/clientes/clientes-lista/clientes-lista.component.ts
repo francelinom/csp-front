@@ -13,6 +13,8 @@ export class ClientesListaComponent implements OnInit {
   constructor(private clienteService: ClientesService) {}
 
   ngOnInit(): void {
-    this.clientes = this.clienteService.getClientesMocado();
+    this.clienteService
+      .getClientes()
+      .subscribe((resposta) => (this.clientes = resposta));
   }
 }
