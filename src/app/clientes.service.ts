@@ -15,6 +15,13 @@ export class ClientesService {
     return this.httpClient.post<Cliente>(`${URL}/api/clientes`, cliente);
   }
 
+  atualizar(cliente: Cliente): Observable<any> {
+    return this.httpClient.put<Cliente>(
+      `${URL}/api/clientes/${cliente.id}`,
+      cliente
+    );
+  }
+
   getClientes(): Observable<Cliente[]> {
     return this.httpClient.get<Cliente[]>(`${URL}/api/clientes`);
   }

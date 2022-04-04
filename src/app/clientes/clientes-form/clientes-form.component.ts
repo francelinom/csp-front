@@ -23,29 +23,43 @@ export class ClientesFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    let params = this.activatedRoute.snapshot.params.id;
-    if (params && params.value && params.value.id) {
-      this.id = params.value.id;
-      this.clientesService.getClienteById(this.id).subscribe(
-        (response) => (this.cliente = response),
-        (errorResponse) => (this.cliente = new Cliente())
-      );
-    }
+    let params = this.activatedRoute.params;
+    params.subscribe((urlParams) => {
+      this.id = urlParams['id'];
+      if (this.id) {
+        this.clientesService.getClienteById(this.id).subscribe(
+          (response) => (this.cliente = response),
+          (errorResponse) => (this.cliente = new Cliente())
+        );
+      }
+    });
   }
 
   onSubmit() {
-    this.clientesService.salvar(this.cliente).subscribe(
-      (response) => {
-        this.success = true;
-        this.errors = [];
-        this.cliente = response;
-        this.router.navigate(['/clientes-lista']);
-      },
-      (errorResponse) => {
-        this.success = false;
-        this.errors = errorResponse.error.errors;
-      }
-    );
+    if (this.id) {
+      this.clientesService.atualizar(this.cliente).subscribe(
+        (response) => {
+          this.success = true;
+          this.errors = [];
+        },
+        (errorResponse) => {
+          this.errors = ['Erro ao atualizar o cliente'];
+        }
+      );
+    } else {
+      this.clientesService.salvar(this.cliente).subscribe(
+        (response) => {
+          this.success = true;
+          this.errors = [];
+          this.cliente = response;
+          this.router.navigate(['/clientes-lista']);
+        },
+        (errorResponse) => {
+          this.success = false;
+          this.errors = errorResponse.error.errors;
+        }
+      );
+    }
   }
 
   voltarParaListagem() {
