@@ -32,4 +32,32 @@
     </div>
 
   </form>
+
+  <div class="row mt-3">
+    <div class="alert alert-info col-12" role="alert" *ngIf="message">
+      {{message}}
+    </div>
+    <div class="col-md-12">
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Cliente</th>
+            <th>Descrição</th>
+            <th>Valor</th>
+            <th>Data</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let l of lista">
+            <td>{{l.cliente?.nome}}</td>
+            <td>{{l.descricao}}</td>
+            <td>{{l.valor}}</td>
+            <td>{{l.data}}</td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
 </div>
