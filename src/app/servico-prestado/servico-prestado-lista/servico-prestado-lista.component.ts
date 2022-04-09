@@ -1,3 +1,5 @@
+import { ServicoPrestadoService } from './../../servico-prestado.service';
+import { ServicoPrestadoBusca } from './servico-prestado-busca';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -9,14 +11,17 @@ export class ServicoPrestadoListaComponent implements OnInit {
   nome!: string;
   mes!: number;
   meses: number[];
+  lista: ServicoPrestadoBusca[] = [];
 
-  constructor() {
+  constructor(private servicoPrestadoService: ServicoPrestadoService) {
     this.meses = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
   }
 
   ngOnInit(): void {}
 
   consultar() {
-    console.log(this.nome, this.mes);
+    this.servicoPrestadoService
+      .buscar(this.nome, this.mes)
+      .subscribe((response) => (this.lista = response));
   }
 }
