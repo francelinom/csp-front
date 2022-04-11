@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -8,13 +9,23 @@ import { Component, OnInit } from '@angular/core';
 export class LoginComponent implements OnInit {
   userName!: string;
   password!: string;
-  loginErro!: boolean;
+  loginError!: boolean;
+  cadastrando!: boolean;
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {}
 
   onSubmit() {
-    console.log(`user: ${this.userName}, pass: ${this.password}`);
+    this.router.navigate(['/home']);
+  }
+
+  preparaCadastrar(event: any) {
+    event?.preventDefault();
+    this.cadastrando = true;
+  }
+
+  cancelarCadastro() {
+    this.cadastrando = false;
   }
 }
