@@ -15,13 +15,16 @@
                 <div class="alert alert-danger" *ngIf="loginError">
                   Login e/ou Senha incorreto(a).
                 </div>
+                <div class="alert alert-success" *ngIf="msgSucesso">
+                  {{msgSucesso}}
+                </div>
                 <form #loginForm="ngForm" (submit)="onSubmit()">
                   <div class="form-group">
                     <label class="small mb-1">Login</label>
                     <input type="text"
                             class="form-control py-4"
-                            name="userName"
-                            [(ngModel)]="userName" placeholder="Digite seu login">
+                            name="username"
+                            [(ngModel)]="username" placeholder="Digite seu login">
                   </div>
 
                   <div class="form-group">
@@ -37,7 +40,10 @@
                       Entrar
                     </button>
 
-                    <button class="btn btn-outline-success m-1" type="button" *ngIf="cadastrando">
+                    <button class="btn btn-outline-success m-1"
+                            type="button"
+                            (click)="cadastrar()"
+                            *ngIf="cadastrando">
                       Cadastrar
                     </button>
 
