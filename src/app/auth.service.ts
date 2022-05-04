@@ -13,6 +13,6 @@ export class AuthService {
   constructor(private httpClient: HttpClient) {}
 
   salvar(usuario: Usuario): Observable<any> {
-    return this.httpClient.post(this.apiUrl, usuario);
+    return this.httpClient.post<any>(this.apiUrl, usuario);
   }
 }

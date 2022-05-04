@@ -11,9 +11,9 @@ import { Component, OnInit } from '@angular/core';
 export class LoginComponent implements OnInit {
   username!: string;
   password!: string;
-  loginError!: boolean;
   cadastrando!: boolean;
   msgSucesso: string = '';
+  errors!: string[];
 
   constructor(private router: Router, private authService: AuthService) {}
 
@@ -39,11 +39,10 @@ export class LoginComponent implements OnInit {
     this.authService.salvar(usuario).subscribe(
       (response) => {
         this.msgSucesso = 'Cadastro Realizado com sucesso.';
-        this.loginError = false;
       },
-      (error) => {
-        this.loginError = true;
+      (errorResponse) => {
         this.msgSucesso = '';
+        this.errors = errorResponse.error.errors;
       }
     );
   }
