@@ -20,6 +20,11 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit() {
+    this.authService.tentarLogar(this.username, this.password).subscribe( response => {
+      this.router.navigate(['/home'])
+    }, errorResponse => {
+      this.errors = ['Usuário e/ou senha incorreto(s).']
+    })
     this.router.navigate(['/home']);
   }
 
