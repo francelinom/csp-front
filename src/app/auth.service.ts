@@ -8,7 +8,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class AuthService {
-  apiUrl: string = environment.apiURL + '/api/usuarios';
+  apiUrl: string = environment.apiURL + 'api/usuarios';
   tokenURL: string = environment.apiURL + environment.obterTokenUrl;
   clientID: string = environment.clientId;
   clientSecret: string = environment.clientSecret;
