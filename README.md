@@ -1,2 +1,2 @@
-# CspFront
+# CspFront.
 Em desenvolvimento...
