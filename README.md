@@ -1,2 +1,2 @@
 # CspFront.
-Em desenvolvimento...
+Em desenvolvimento.
